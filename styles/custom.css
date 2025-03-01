@@ -1,0 +1,197 @@
+/* Import other CSS files */
+@import 'animations.css';
+@import 'skills.css';
+
+/* General styles */
+.hero-section {
+    height: 100vh;
+    background-color: #f8f9fa;
+    padding-top: 60px;
+}
+
+section {
+    padding-top: 60px;
+    opacity: 0;
+    animation: fadeIn 1s ease-in forwards;
+}
+
+section.active {
+    opacity: 1;
+}
+
+/* Profile image */
+.profile-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 5px solid #fff;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    margin: 0 auto;
+    display: block;
+}
+
+.profile-img:hover {
+    transform: scale(1.05);
+}
+
+/* Education section */
+.education-item {
+    padding: 15px;
+    border: none;
+    background: rgba(0,123,255,0.05);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.education-item:hover {
+    transform: translateY(-5px);
+    background: rgba(0,123,255,0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Contact link */
+a[href^="mailto"] {
+    position: relative;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+a[href^="mailto"]:hover {
+    color: #007bff;
+}
+
+a[href^="mailto"]::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #007bff;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+a[href^="mailto"]:hover::after {
+    transform: scaleX(1);
+}
+
+/* About section */
+#about {
+    position: relative;
+    overflow: hidden;
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+}
+
+/* Hero section */
+.hero-section {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    padding-top: 60px;
+    background-color: rgba(0, 0, 0, 0.8); /* Darkened background */
+}
+
+/* Hero section buttons */
+.hero-btn {
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.hero-btn:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #000;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.bg-slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.bg-slideshow img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    filter: brightness(0.7) blur(2px);
+}
+
+/* Remove these classes as they're no longer needed */
+.bg-slideshow,
+.bg-slideshow img,
+.bg-slideshow img.active {
+    display: none;
+}
+
+/* Make text more visible */
+.hero-section h1,
+.hero-section p {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Project card video hover effect */
+.project-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-media {
+    position: relative;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.project-media img,
+.project-media video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+.project-video {
+    opacity: 0;
+    z-index: 1;
+}
+
+.project-card:hover .project-video {
+    opacity: 1;
+}
+
+.project-card:hover img {
+    opacity: 0;
+}
+
+.project-card .card-body {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.95);
+}

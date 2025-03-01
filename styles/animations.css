@@ -1,0 +1,53 @@
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulseAndGlow {
+    0% {
+        transform: scale(0.95);
+        filter: brightness(1);
+    }
+    50% {
+        transform: scale(1.05);
+        filter: brightness(1.2);
+    }
+    100% {
+        transform: scale(0.95);
+        filter: brightness(1);
+    }
+}
+
+/* Animation delays */
+.skill-item:nth-child(odd) {
+    transform: translateX(-100px);
+    animation: slideInLeft 0.5s ease-out forwards;
+    animation-delay: 0.1s; /* Reduced delay */
+}
+
+.skill-item:nth-child(even) {
+    transform: translateX(100px);
+    animation: slideInRight 0.5s ease-out forwards;
+    animation-delay: 0.2s; /* Reduced delay */
+}

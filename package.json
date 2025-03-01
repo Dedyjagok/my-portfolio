@@ -1,0 +1,15 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Personal Portfolio",
+  "scripts": {
+    "start": "tsc --watch",
+    "build": "tsc",
+    "vercel-build": "npm run build",
+    "serve": "live-server"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3",
+    "live-server": "^1.2.2"
+  }
+}
