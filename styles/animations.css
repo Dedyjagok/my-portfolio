@@ -51,3 +51,149 @@
     animation: slideInRight 0.5s ease-out forwards;
     animation-delay: 0.2s; /* Reduced delay */
 }
+
+/* Enhanced Laptop Animation */
+.laptop-animation {
+    perspective: 1000px;
+    width: 300px;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+}
+
+.laptop {
+    width: 250px;
+    height: 150px;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+    animation: laptopOpen 2s cubic-bezier(0.68, -0.6, 0.32, 1.6) forwards;
+    position: relative;
+}
+
+.laptop-screen {
+    width: 250px;
+    height: 150px;
+    background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+    border: 8px solid #333;
+    border-radius: 8px;
+    transform-origin: bottom;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.laptop-base {
+    width: 280px;
+    height: 12px;
+    background: linear-gradient(to right, #2a2a2a, #333);
+    margin: -5px -15px;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.laptop-code {
+    padding: 15px;
+    position: relative;
+}
+
+.code-line {
+    display: block;
+    width: 0;
+    height: 8px;
+    background: linear-gradient(90deg, #00ff4c, #00ff9d);
+    margin: 8px 0;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(6, 216, 51, 0.5);
+    opacity: 0;
+    animation: typing 1s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+               glow 2s ease-in-out infinite;
+}
+
+.code-line:nth-child(1) {
+    animation-delay: 1.5s;
+    width: 0;
+}
+
+.code-line:nth-child(2) {
+    animation-delay: 2s;
+    width: 0;
+}
+
+.code-line:nth-child(3) {
+    animation-delay: 2.5s;
+    width: 0;
+}
+
+@keyframes laptopOpen {
+    0% {
+        transform: rotateX(90deg) translateY(50px);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    80% {
+        transform: rotateX(-5deg) translateY(-10px);
+    }
+    100% {
+        transform: rotateX(0deg) translateY(0);
+    }
+}
+
+@keyframes typing {
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        width: 80%;
+        opacity: 1;
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(38, 0, 255, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(140, 0, 255, 0.8);
+    }
+}
+
+/* Optional: Add floating animation to the entire laptop */
+.laptop-animation {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Make laptop responsive */
+@media (max-width: 768px) {
+    .laptop-animation {
+        width: 200px;
+    }
+    
+    .laptop {
+        width: 180px;
+        height: 120px;
+    }
+    
+    .laptop-screen {
+        width: 180px;
+        height: 120px;
+    }
+    
+    .laptop-base {
+        width: 200px;
+    }
+}
+

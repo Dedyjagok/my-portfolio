@@ -204,6 +204,7 @@ class Portfolio {
         document.querySelectorAll('section, #skillsContainer').forEach(section => {
             observer.observe(section);
         });
+        
     }
 }
 

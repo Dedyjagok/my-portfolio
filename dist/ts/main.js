@@ -1,5 +1,6 @@
-var Portfolio = /** @class */ (function () {
-    function Portfolio() {
+"use strict";
+class Portfolio {
+    constructor() {
         this.projects = [
             {
                 title: "Warung UMKM",
@@ -27,112 +28,129 @@ var Portfolio = /** @class */ (function () {
             { name: "After Effect", imageUrl: "img/After Effect-icon.png" }
         ];
     }
-    Portfolio.prototype.init = function () {
+    init() {
         this.loadProjects();
         this.loadSkills();
         this.setupContactForm();
         this.initializeAnimations();
-    };
-    Portfolio.prototype.loadProjects = function () {
-        var _this = this;
-        var container = document.getElementById('projectsContainer');
+    }
+    loadProjects() {
+        const container = document.getElementById('projectsContainer');
         if (!container)
             return;
-        this.projects.forEach(function (project) {
-            var projectElement = _this.createProjectElement(project);
+        this.projects.forEach(project => {
+            const projectElement = this.createProjectElement(project);
             container.appendChild(projectElement);
         });
-    };
-    Portfolio.prototype.createProjectElement = function (project) {
-        var col = document.createElement('div');
+    }
+    createProjectElement(project) {
+        const col = document.createElement('div');
         col.className = 'col-lg-4 col-md-6 mb-4';
-        col.innerHTML = "\n            <div class=\"card h-100 project-card\">\n                <div class=\"project-media\">\n                    <img src=\"".concat(project.imageUrl, "\" class=\"card-img-top\" alt=\"").concat(project.title, "\">\n                    <video class=\"project-video\" muted>\n                        <source src=\"video/video-project-web-umkm.mp4\" type=\"video/mp4\">\n                    </video>\n                </div>\n                <div class=\"card-body\">\n                    <h5 class=\"card-title\">").concat(project.title, "</h5>\n                    <p class=\"card-text\">").concat(project.description, "</p>\n                    <div class=\"technology-stack\">\n                        ").concat(project.technologies.map(function (tech) {
-            return "<span class=\"badge bg-secondary me-1\">".concat(tech, "</span>");
-        }).join(''), "\n                    </div>\n                </div>\n            </div>\n        ");
+        col.innerHTML = `
+            <div class="card h-100 project-card">
+                <div class="project-media">
+                    <img src="${project.imageUrl}" class="card-img-top" alt="${project.title}">
+                    <video class="project-video" muted>
+                        <source src="video/video-project-web-umkm.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">${project.title}</h5>
+                    <p class="card-text">${project.description}</p>
+                    <div class="technology-stack">
+                        ${project.technologies.map(tech => `<span class="badge bg-secondary me-1">${tech}</span>`).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
         // Add hover event listeners
-        var card = col.querySelector('.project-card');
-        var video = col.querySelector('.project-video');
-        card === null || card === void 0 ? void 0 : card.addEventListener('mouseenter', function () {
+        const card = col.querySelector('.project-card');
+        const video = col.querySelector('.project-video');
+        card === null || card === void 0 ? void 0 : card.addEventListener('mouseenter', () => {
             video.play();
         });
-        card === null || card === void 0 ? void 0 : card.addEventListener('mouseleave', function () {
+        card === null || card === void 0 ? void 0 : card.addEventListener('mouseleave', () => {
             video.pause();
             video.currentTime = 0;
         });
         return col;
-    };
-    Portfolio.prototype.createSkillElement = function (skill, index) {
-        var div = document.createElement('div');
-        div.className = "col-6 mb-3 skill-item ".concat(index % 2 === 0 ? 'odd' : 'even');
-        div.innerHTML = "\n            <div class=\"d-flex align-items-center skill-box\">\n                <img src=\"".concat(skill.imageUrl, "\" class=\"skill-custom-icon\" alt=\"").concat(skill.name, "\">\n                <span>").concat(skill.name, "</span>\n            </div>\n        ");
+    }
+    createSkillElement(skill, index) {
+        const div = document.createElement('div');
+        div.className = `col-6 mb-3 skill-item ${index % 2 === 0 ? 'odd' : 'even'}`;
+        div.innerHTML = `
+            <div class="d-flex align-items-center skill-box">
+                <img src="${skill.imageUrl}" class="skill-custom-icon" alt="${skill.name}">
+                <span>${skill.name}</span>
+            </div>
+        `;
         // Create and append sliding icon once
-        var slidingIcon = document.createElement('div');
+        const slidingIcon = document.createElement('div');
         slidingIcon.className = 'sliding-icon';
-        slidingIcon.innerHTML = "<img src=\"".concat(skill.imageUrl, "\" alt=\"").concat(skill.name, "\">");
-        var aboutSection = document.getElementById('about');
+        slidingIcon.innerHTML = `<img src="${skill.imageUrl}" alt="${skill.name}">`;
+        const aboutSection = document.getElementById('about');
         if (aboutSection) {
             // Create a cleanup function for the previous icon
-            var cleanup_1 = function () {
-                var existingIcon = aboutSection.querySelector(".sliding-icon[data-skill=\"".concat(skill.name, "\"]"));
+            const cleanup = () => {
+                const existingIcon = aboutSection.querySelector(`.sliding-icon[data-skill="${skill.name}"]`);
                 if (existingIcon) {
                     existingIcon.remove();
                 }
             };
             // Add data attribute for identification
             slidingIcon.setAttribute('data-skill', skill.name);
-            div.addEventListener('mouseenter', function () {
-                cleanup_1(); // Remove any existing icon
+            div.addEventListener('mouseenter', () => {
+                cleanup(); // Remove any existing icon
                 aboutSection.appendChild(slidingIcon);
                 // Force reflow
                 slidingIcon.offsetHeight;
-                requestAnimationFrame(function () {
+                requestAnimationFrame(() => {
                     slidingIcon.style.transform = 'translate(0, -50%)';
                     slidingIcon.classList.add('active');
                 });
             });
-            div.addEventListener('mouseleave', function () {
+            div.addEventListener('mouseleave', () => {
                 slidingIcon.style.transform = 'translate(100%, -50%)';
                 slidingIcon.classList.remove('active');
                 // Cleanup after animation
-                setTimeout(cleanup_1, 500);
+                setTimeout(cleanup, 500);
             });
         }
         return div;
-    };
-    Portfolio.prototype.loadSkills = function () {
-        var _this = this;
-        var container = document.getElementById('skillsContainer');
+    }
+    loadSkills() {
+        const container = document.getElementById('skillsContainer');
         if (!container)
             return;
         container.className = 'row';
-        this.skills.forEach(function (skill, index) {
-            var skillElement = _this.createSkillElement(skill, index);
+        this.skills.forEach((skill, index) => {
+            const skillElement = this.createSkillElement(skill, index);
             container.appendChild(skillElement);
         });
-    };
-    Portfolio.prototype.setupContactForm = function () {
-        var form = document.getElementById('contactForm');
+    }
+    setupContactForm() {
+        const form = document.getElementById('contactForm');
         if (!form)
             return;
-        form.addEventListener('submit', function (e) {
+        form.addEventListener('submit', (e) => {
             e.preventDefault();
-            var formData = new FormData(form);
-            var formObject = {};
-            formData.forEach(function (value, key) {
+            const formData = new FormData(form);
+            const formObject = {};
+            formData.forEach((value, key) => {
                 formObject[key] = value.toString();
             });
             console.log('Form submitted:', formObject);
         });
-    };
-    Portfolio.prototype.initializeAnimations = function () {
-        var observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
+    }
+    initializeAnimations() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    var element = entry.target;
+                    const element = entry.target;
                     if (element.id === 'skillsContainer') {
-                        var skills = element.querySelectorAll('.skill-item');
-                        skills.forEach(function (skill, index) {
-                            setTimeout(function () {
+                        const skills = element.querySelectorAll('.skill-item');
+                        skills.forEach((skill, index) => {
+                            setTimeout(() => {
                                 skill.classList.add('animate__animated');
                                 skill.classList.add(index % 2 === 0 ? 'animate__fadeInLeft' : 'animate__fadeInRight');
                             }, index * 100);
@@ -146,14 +164,13 @@ var Portfolio = /** @class */ (function () {
         }, {
             threshold: 0.2
         });
-        document.querySelectorAll('section, #skillsContainer').forEach(function (section) {
+        document.querySelectorAll('section, #skillsContainer').forEach(section => {
             observer.observe(section);
         });
-    };
-    return Portfolio;
-}());
+    }
+}
 // Initialize portfolio
-document.addEventListener('DOMContentLoaded', function () {
-    var portfolio = new Portfolio();
+document.addEventListener('DOMContentLoaded', () => {
+    const portfolio = new Portfolio();
     portfolio.init();
 });
