@@ -752,3 +752,111 @@ section h2::after {
         text-shadow: 0 0 15px var(--sao-blue), 0 0 25px var(--sao-blue);
     }
 }
+
+/* SAO-themed Footer */
+.sao-footer {
+    background: linear-gradient(to bottom, var(--sao-bg), var(--sao-bg-dark));
+    border-top: 2px solid var(--sao-blue);
+    color: var(--sao-text);
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.sao-footer::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--sao-blue), transparent);
+    opacity: 0.8;
+}
+
+.footer-logo {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--sao-blue);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 162, 255, 0.4);
+}
+
+.sao-footer-title {
+    color: var(--sao-light-blue);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 0.1rem;
+}
+
+.sao-footer-subtitle {
+    color: var(--sao-text-muted);
+    font-size: 0.75rem;
+}
+
+.sao-tech-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.sao-tech-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    background: rgba(0, 162, 255, 0.1);
+    border: 1px solid rgba(0, 162, 255, 0.3);
+    border-radius: 3px;
+    color: var(--sao-text-muted);
+    font-size: 0.75rem;
+}
+
+.sao-tech-badge i {
+    color: var(--sao-blue);
+    margin-right: 3px;
+}
+
+.sao-social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 162, 255, 0.1);
+    border: 1px solid rgba(0, 162, 255, 0.3);
+    color: var(--sao-text);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.sao-social-link:hover {
+    background: rgba(0, 162, 255, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 162, 255, 0.2);
+    color: var(--sao-light-blue);
+}
+
+.sao-footer-divider {
+    border-color: rgba(0, 162, 255, 0.3);
+    opacity: 0.3;
+    margin: 15px 0;
+}
+
+.sao-license, .sao-copyright {
+    color: var(--sao-text-muted);
+    font-size: 0.75rem;
+}
+
+.sao-license i.fa-heart {
+    animation: heartBeat 1.5s infinite;
+}
+
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
