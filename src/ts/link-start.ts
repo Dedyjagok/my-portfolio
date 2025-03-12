@@ -151,6 +151,23 @@ export class LinkStartAnimation {
                     }
                 }, 70);
             }
+
+            setTimeout(() => {
+                console.log("Starting tunnel animation");
+                if (this.tunnel) {
+                    this.tunnel.style.opacity = '1';
+                    
+                    // Add all color lines at once for a consistent rainbow effect
+                    this.addExtraColorLines();
+                }
+                
+                // Fade out text with blur effect
+                if (this.linkStartText) {
+                    this.linkStartText.style.transition = 'all 0.8s ease';
+                    this.linkStartText.style.opacity = '0';
+                    this.linkStartText.style.filter = 'blur(10px)';
+                }
+            }, 1500);
             
             // Step 2: After 1.5s, start tunnel animation with enhanced effects
             setTimeout(() => {
@@ -158,11 +175,48 @@ export class LinkStartAnimation {
                 if (this.tunnel) {
                     this.tunnel.style.opacity = '1';
                     
-                    // Add dynamic color lines
-                    for (let i = 0; i < 3; i++) {
-                        setTimeout(() => {
-                            this.addExtraColorLines();
-                        }, i * 300);
+                    // Clear any existing color lines
+                    const existingLines = this.tunnel.querySelectorAll('.color-line');
+                    existingLines.forEach(line => {
+                        if (line.parentNode) {
+                            line.parentNode.removeChild(line);
+                        }
+                    });
+                    
+                    // Create consistent color spectrum (rainbow effect)
+                    const colorSpectrum = [
+                        '#ff0000', // Red
+                        '#ff7700', // Orange
+                        '#ffce00', // Yellow
+                        '#31ff6a', // Green
+                        '#00a0ff', // Blue
+                        '#0022ff', // Indigo
+                        '#c900ff'  // Violet
+                    ];
+                    
+                    // Create multiple lines for each color to create a fuller effect
+                    for (let i = 0; i < colorSpectrum.length; i++) {
+                        // Create 3 lines of each color at different positions
+                        for (let j = 0; j < 3; j++) {
+                            const offset = (j - 1) * 8; // -8, 0, 8 offset
+                            const basePosition = 10 + ((i * 12) % 80); // Distribute across screen width
+                            const position = Math.max(5, Math.min(95, basePosition + offset)); // Keep within 5-95% range
+                            
+                            const line = document.createElement('div');
+                            line.className = 'color-line';
+                            line.style.backgroundColor = colorSpectrum[i];
+                            line.style.left = `${position}%`;
+                            line.style.width = `${3 + Math.random() * 4}%`; // 3-7% width
+                            line.style.opacity = '0.85';
+                            
+                            // Randomize slightly the rotation for natural feel
+                            const rotationDeg = Math.random() * 14 - 7; // -7 to 7 degrees
+                            line.style.transform = `rotate(${rotationDeg}deg)`;
+                            line.style.animation = `moveTunnel ${1.8 + Math.random() * 0.7}s cubic-bezier(0.25, 0.1, 0.25, 1) forwards`;
+                            line.style.animationDelay = `${Math.random() * 0.3}s`;
+                            
+                            this.tunnel.appendChild(line);
+                        }
                     }
                 }
                 
