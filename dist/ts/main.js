@@ -1,4 +1,3 @@
-"use strict";
 class Portfolio {
     constructor() {
         this.projects = [
@@ -28,16 +27,59 @@ class Portfolio {
             { name: "After Effect", imageUrl: "img/After Effect-icon.png" }
         ];
     }
+    initNavbar() {
+        // Handle navbar scrolling effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('main-navbar');
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                }
+                else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+        });
+        // Update active nav item based on scroll position - FIXED VERSION
+        window.addEventListener('scroll', () => {
+            // Get the scroll position with a small offset to trigger earlier
+            const scrollPosition = window.scrollY + 300; // 300px offset for better UX
+            // Get all sections and find the one currently in view
+            const sections = document.querySelectorAll('section[id]');
+            let current = '';
+            sections.forEach(section => {
+                // Get top position using getBoundingClientRect() which is more reliable
+                const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+                const sectionHeight = section.clientHeight;
+                const sectionId = section.getAttribute('id') || '';
+                // Check if we've scrolled to this section
+                if (scrollPosition >= sectionTop && scrollPosition < (sectionTop + sectionHeight)) {
+                    current = sectionId;
+                }
+            });
+            // Update the active class on nav links
+            document.querySelectorAll('.nav-link').forEach(navLink => {
+                navLink.classList.remove('active');
+                const href = navLink.getAttribute('href');
+                if (href && href.substring(1) === current) {
+                    navLink.classList.add('active');
+                }
+            });
+        });
+    }
     init() {
         this.loadProjects();
         this.loadSkills();
         this.setupContactForm();
         this.initializeAnimations();
+        this.initNavbar();
     }
     loadProjects() {
         const container = document.getElementById('projectsContainer');
         if (!container)
             return;
+        // Clear any existing projects in the container
+        container.innerHTML = '';
         this.projects.forEach(project => {
             const projectElement = this.createProjectElement(project);
             container.appendChild(projectElement);
@@ -56,7 +98,7 @@ class Portfolio {
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">${project.title}</h5>
-                    <p class="card-text">${project.description}</p>
+                    <p class="card-text text-white">${project.description}</p>
                     <div class="technology-stack">
                         ${project.technologies.map(tech => `<span class="badge bg-secondary me-1">${tech}</span>`).join('')}
                     </div>
@@ -122,6 +164,8 @@ class Portfolio {
         const container = document.getElementById('skillsContainer');
         if (!container)
             return;
+        // Clear any existing skills in the container
+        container.innerHTML = '';
         container.className = 'row';
         this.skills.forEach((skill, index) => {
             const skillElement = this.createSkillElement(skill, index);
@@ -171,6 +215,19 @@ class Portfolio {
 }
 // Initialize portfolio
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM content loaded, initializing portfolio");
     const portfolio = new Portfolio();
     portfolio.init();
+    // Listen for portfolio refresh event
+    document.addEventListener('portfolioReady', () => {
+        console.log('Portfolio ready event received. Reinitializing...');
+        try {
+            const portfolio = new Portfolio();
+            portfolio.init();
+        }
+        catch (error) {
+            console.error("Error reinitializing portfolio:", error);
+        }
+    });
 });
+export {};

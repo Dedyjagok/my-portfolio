@@ -1,6 +1,7 @@
 /* Import other CSS files */
 @import 'animations.css';
 @import 'skills.css';
+@import 'link-start.css'; 
 
 /* General styles */
 .hero-section {
@@ -160,6 +161,22 @@ a[href^="mailto"]:hover::after {
     position: relative;
     overflow: hidden;
 }
+.project-card .card-text {
+    color: var(--sao-text);
+}
+.project-card .card-body {
+    background: rgba(10, 20, 30, 0.9);
+    border-top: 1px solid rgba(0, 162, 255, 0.3);
+    color: white;
+}
+/* Make Projects section match SAO theme */
+#projects {
+    background: linear-gradient(135deg, var(--sao-bg-dark), var(--sao-bg), var(--sao-bg-dark));
+}
+
+#projects h2 {
+    color: var(--sao-blue);
+}
 
 .project-media {
     position: relative;
@@ -194,4 +211,544 @@ a[href^="mailto"]:hover::after {
     position: relative;
     z-index: 2;
     background: rgba(255, 255, 255, 0.95);
+}
+
+/* Enhanced navbar styling */
+#main-navbar {
+    background: rgba(0, 0, 0, 0.8);
+    border-bottom: 2px solid rgba(0, 162, 255, 0.3);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s ease;
+}
+
+#main-navbar.scrolled {
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.95);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: white !important;
+    display: flex;
+    align-items: center;
+}
+
+.nav-profile-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 162, 255, 0.7);
+    box-shadow: 0 0 10px rgba(0, 162, 255, 0.4);
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    margin: 0 5px;
+    position: relative;
+    padding: 0.5rem 0.8rem !important;
+    font-weight: 500;
+    transition: all 0.3s ease !important;
+}
+
+.nav-link:hover, .nav-link:focus, .nav-link.active {
+    color: #ffffff !important;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, #00a2ff, #00ffea);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+    box-shadow: 0 0 8px rgba(0, 162, 255, 0.7);
+}
+
+.nav-link:hover::after, .nav-link:focus::after, .nav-link.active::after {
+    width: 80%;
+}
+
+/* Navbar animation for when it appears */
+@keyframes slideInDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+#main-navbar.show-navbar {
+    display: block !important;
+    animation: slideInDown 0.5s ease-out forwards;
+}
+
+/* Dynamic "active" class for current section */
+.nav-link.active {
+    background: rgba(0, 162, 255, 0.1);
+    border-radius: 4px;
+}
+
+/* SAO Theme Styling */
+:root {
+    --sao-blue: #00a2ff;
+    --sao-light-blue: #4cc2ff;
+    --sao-dark-blue: #0062a3;
+    --sao-green: #00ff9d;
+    --sao-yellow: #ffce00;
+    --sao-red: #ff2b4e;
+    --sao-bg: #121a22;
+    --sao-bg-dark: #0a0f14;
+    --sao-bg-light: #1c2836;
+    --sao-text: #ffffff;
+    --sao-text-muted: rgba(255, 255, 255, 0.7);
+}
+
+/* Override Bootstrap dark theme */
+body {
+    background-color: var(--sao-bg);
+    color: var(--sao-text);
+    font-family: 'Rajdhani', 'Arial', sans-serif;
+}
+
+/* SAO Navbar styling */
+.sao-navbar {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 10, 30, 0.85));
+    border-bottom: 2px solid var(--sao-blue);
+    box-shadow: 0 0 20px rgba(0, 162, 255, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1rem;
+}
+
+.sao-brand {
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.sao-logo-container {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    background: rgba(0, 162, 255, 0.1);
+    border: 1px solid rgba(0, 162, 255, 0.3);
+    border-radius: 5px;
+}
+
+.nav-profile-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid var(--sao-blue);
+    box-shadow: 0 0 10px rgba(0, 162, 255, 0.5);
+}
+
+.sao-player-info {
+    margin-left: 10px;
+}
+
+.sao-player-name {
+    display: block;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 1px;
+    line-height: 1;
+}
+
+.sao-player-status {
+    display: flex;
+    align-items: center;
+    font-size: 0.7rem;
+}
+
+.sao-status-indicator {
+    width: 8px;
+    height: 8px;
+    background-color: var(--sao-green);
+    border-radius: 50%;
+    margin-right: 5px;
+    box-shadow: 0 0 5px var(--sao-green);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.7;
+        box-shadow: 0 0 5px var(--sao-green);
+    }
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 10px var(--sao-green), 0 0 15px var(--sao-green);
+    }
+    100% {
+        opacity: 0.7;
+        box-shadow: 0 0 5px var(--sao-green);
+    }
+}
+
+.sao-status-text {
+    color: var(--sao-green);
+}
+
+.sao-nav-link {
+    color: var(--sao-text) !important;
+    padding: 0.7rem 1rem !important;
+    margin: 0 5px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid transparent;
+    transition: all 0.3s ease !important;
+}
+
+.sao-nav-link:hover, 
+.sao-nav-link:focus, 
+.sao-nav-link.active {
+    color: var(--sao-blue) !important;
+    background-color: rgba(0, 162, 255, 0.1);
+    border: 1px solid rgba(0, 162, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 162, 255, 0.2);
+}
+
+.sao-nav-link::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg, transparent, var(--sao-blue), transparent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+.sao-nav-link[target="_blank"]::after {
+    content: none;
+}
+
+.sao-nav-link:hover::before, 
+.sao-nav-link:focus::before, 
+.sao-nav-link.active::before {
+    transform: scaleX(1);
+}
+
+/* Add a special indicator for external links */
+.sao-nav-link[target="_blank"]::after {
+    content: '\f35d';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 0.7em;
+    margin-left: 5px;
+    vertical-align: super;
+    opacity: 0.7;
+}
+.sao-nav-link:hover {
+    transform: translateY(-2px);
+}
+
+/* SAO Sections Styling */
+section {
+    background-color: var(--sao-bg);
+    border-bottom: 1px solid rgba(0, 162, 255, 0.2);
+    position: relative;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--sao-blue);
+    padding-bottom: 0.5rem;
+    position: relative;
+}
+
+.section-header::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background-color: var(--sao-green);
+    box-shadow: 0 0 10px var(--sao-green);
+}
+
+section h2 {
+    position: relative;
+    display: inline-block;
+    color: var(--sao-blue);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(to right, var(--sao-blue), transparent);
+}
+
+/* Hero section SAO style */
+.hero-section {
+    background: linear-gradient(135deg, var(--sao-bg-dark), var(--sao-bg), var(--sao-bg-dark));
+}
+
+/* SAO Card styling */
+.sao-card {
+    background: rgba(10, 20, 30, 0.7);
+    border: 1px solid var(--sao-blue);
+    border-radius: 5px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 162, 255, 0.15);
+}
+
+.sao-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--sao-blue), var(--sao-green));
+}
+
+.sao-card h3 {
+    color: var(--sao-light-blue);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+/* SAO Button styling */
+.sao-btn {
+    background: rgba(0, 162, 255, 0.15);
+    color: var(--sao-text);
+    border: 1px solid var(--sao-blue);
+    border-radius: 3px;
+    padding: 0.6rem 1.5rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.sao-btn-simple {
+    background: rgba(0, 162, 255, 0.15);
+    color: var(--sao-text);
+    border: 1px solid var(--sao-blue);
+    border-radius: 3px;
+    padding: 0.6rem 1.5rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.sao-btn-simple:hover {
+    background: rgba(0, 162, 255, 0.25);
+    color: white;
+    box-shadow: 0 0 15px rgba(0, 162, 255, 0.5);
+}
+
+.sao-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.7s ease;
+    z-index: -1;
+}
+
+.sao-btn:hover {
+    color: #fff;
+    box-shadow: 0 0 15px rgba(0, 162, 255, 0.5);
+    transform: translateY(-3px);
+}
+
+.sao-btn:hover::before {
+    left: 100%;
+}
+
+/* Skills styling for SAO */
+.skill-box {
+    background: rgba(0, 162, 255, 0.07);
+    border: 1px solid rgba(0, 162, 255, 0.3);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.skill-box:hover {
+    background: rgba(0, 162, 255, 0.15);
+    box-shadow: 0 0 15px rgba(0, 162, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+/* Projects section SAO style */
+.project-card {
+    background: rgba(10, 20, 30, 0.7);
+    border: 1px solid var(--sao-blue);
+    box-shadow: 0 0 20px rgba(0, 162, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--sao-blue), var(--sao-green));
+    z-index: 2;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 25px rgba(0, 162, 255, 0.2);
+}
+
+.project-card .card-body {
+    background: rgba(10, 20, 30, 0.9);
+    border-top: 1px solid rgba(0, 162, 255, 0.3);
+}
+
+.project-card .card-title {
+    color: var(--sao-blue);
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.project-card .badge {
+    background-color: rgba(0, 162, 255, 0.2);
+    color: var(--sao-text);
+    border: 1px solid rgba(0, 162, 255, 0.4);
+    font-weight: 400;
+}
+
+/* Add a nice floating hexagonal pattern to background */
+.sao-bg-pattern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><polygon points="50,3 91,28 91,72 50,97 9,72 9,28" fill="none" stroke="rgba(0,162,255,0.1)" stroke-width="1"/></svg>');
+    background-size: 150px 150px;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+/* SAO HP Bar */
+.sao-hp-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 250px;
+}
+
+.sao-hp-label {
+    color: var(--sao-green);
+    font-weight: bold;
+    margin-right: 10px;
+    text-shadow: 0 0 5px var(--sao-green);
+}
+
+.sao-hp-bar {
+    width: 150px;
+    height: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--sao-green);
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.sao-hp-fill {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--sao-green), #6aff6a);
+    box-shadow: 0 0 8px var(--sao-green);
+    animation: hpFill 1s ease-out forwards;
+    transform-origin: left;
+}
+
+@keyframes hpFill {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+}
+
+.sao-hp-value {
+    color: var(--sao-green);
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 0.8rem;
+}
+
+/* SAO Glitch Text Effect */
+.sao-glitch-text {
+    position: relative;
+    animation: saoGlitch 5s infinite alternate;
+    text-shadow: 0 0 10px var(--sao-blue);
+}
+
+@keyframes saoGlitch {
+    0%, 90%, 100% {
+        text-shadow: 0 0 10px var(--sao-blue);
+        transform: translateX(0);
+    }
+    92% {
+        text-shadow: 2px 0 10px var(--sao-green), -2px 0 10px var(--sao-red);
+        transform: translateX(2px);
+    }
+    94% {
+        text-shadow: -2px 0 10px var(--sao-green), 2px 0 10px var(--sao-red);
+        transform: translateX(-2px);
+    }
+    96% {
+        text-shadow: 1px 0 10px var(--sao-green), -1px 0 10px var(--sao-red);
+        transform: translateX(1px);
+    }
+    98% {
+        text-shadow: -1px 0 10px var(--sao-green), 1px 0 10px var(--sao-red);
+        transform: translateX(-1px);
+    }
+}
+
+/* SAO Scroll Icon */
+.sao-scroll-icon {
+    color: var(--sao-blue);
+    animation: saoGlow 2s infinite;
+}
+
+@keyframes saoGlow {
+    0%, 100% {
+        text-shadow: 0 0 5px var(--sao-blue);
+    }
+    50% {
+        text-shadow: 0 0 15px var(--sao-blue), 0 0 25px var(--sao-blue);
+    }
 }
