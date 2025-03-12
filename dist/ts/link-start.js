@@ -24,7 +24,8 @@ export class LinkStartAnimation {
         ];
         this.button = document.getElementById('link-start-button');
         this.animationContainer = document.getElementById('link-start-animation');
-        this.mainContent = document.getElementById('main-content');
+        // Fix: Use the first section element as main content instead of looking for #main-content
+        this.mainContent = document.querySelector('body'); // Use body as container for all content sections
         this.linkStartText = document.querySelector('.link-start-text');
         this.tunnel = document.querySelector('.link-start-tunnel');
         this.systemCheck = document.querySelector('.system-check');
@@ -122,20 +123,6 @@ export class LinkStartAnimation {
                     }
                 }, 70);
             }
-            setTimeout(() => {
-                console.log("Starting tunnel animation");
-                if (this.tunnel) {
-                    this.tunnel.style.opacity = '1';
-                    // Add all color lines at once for a consistent rainbow effect
-                    this.addExtraColorLines();
-                }
-                // Fade out text with blur effect
-                if (this.linkStartText) {
-                    this.linkStartText.style.transition = 'all 0.8s ease';
-                    this.linkStartText.style.opacity = '0';
-                    this.linkStartText.style.filter = 'blur(10px)';
-                }
-            }, 1500);
             // Step 2: After 1.5s, start tunnel animation with enhanced effects
             setTimeout(() => {
                 console.log("Starting tunnel animation");
@@ -263,6 +250,7 @@ export class LinkStartAnimation {
                     // Animate flash
                     flash.style.animation = 'finalFlash 0.8s forwards';
                     // After flash animation ends, show main content
+                    // After flash animation ends, show main content
                     setTimeout(() => {
                         console.log("Showing main content");
                         console.log("Main content reference:", !!this.mainContent);
@@ -290,29 +278,55 @@ export class LinkStartAnimation {
                         if (this.mainContent) {
                             // Set flag in session storage to indicate animation completed
                             sessionStorage.setItem('linkStartCompleted', 'true');
-                            // Show main content and ensure it's interactive
-                            this.mainContent.style.display = 'block';
-                            this.mainContent.style.zIndex = '1';
-                            this.mainContent.style.position = 'relative';
-                            // Continue with your existing animation refresh logic...
-                            console.log("Main content display set to block with animations refreshed");
-                            // Initialize the Portfolio again to reload content
+                            console.log("Resetting animations for all elements");
+                            // First, set all sections to invisible but keep them in the DOM
+                            document.querySelectorAll('section').forEach(section => {
+                                section.style.opacity = '0';
+                            });
+                            // Hide any existing skill animations
+                            const skillContainer = document.getElementById('skillsContainer');
+                            if (skillContainer) {
+                                skillContainer.querySelectorAll('.skill-item').forEach(skill => {
+                                    skill.style.opacity = '0';
+                                    skill.style.transform = 'translateX(-100px)'; // Reset position
+                                });
+                            }
+                            // Remove all animation classes first
+                            document.querySelectorAll('.animate__animated').forEach(el => {
+                                el.classList.forEach(cls => {
+                                    if (cls.startsWith('animate__')) {
+                                        el.classList.remove(cls);
+                                    }
+                                });
+                            });
+                            // Wait a bit to ensure DOM updates before starting new animations
                             setTimeout(() => {
                                 try {
-                                    const event = new Event('portfolioReady');
+                                    console.log("Triggering portfolio refresh event");
+                                    // Reset laptop animation if it exists
+                                    const laptopAnimation = document.querySelector('.laptop-animation');
+                                    if (laptopAnimation) {
+                                        // Clone and replace to reset animations
+                                        const parent = laptopAnimation.parentNode;
+                                        if (parent) {
+                                            const clone = laptopAnimation.cloneNode(true);
+                                            parent.replaceChild(clone, laptopAnimation);
+                                        }
+                                    }
+                                    // Dispatch a custom event that will be caught by main.ts
+                                    const event = new CustomEvent('portfolioReady', {
+                                        detail: {
+                                            refreshAnimations: true,
+                                            timestamp: new Date().getTime() // Add timestamp to ensure event is treated as new
+                                        }
+                                    });
                                     document.dispatchEvent(event);
                                     console.log("portfolioReady event dispatched");
                                 }
                                 catch (error) {
                                     console.error("Error dispatching portfolioReady event:", error);
-                                    // Fallback: try to reinitialize anyway
-                                    try {
-                                        // Force a page refresh as a last resort
-                                        window.location.reload();
-                                    }
-                                    catch (reloadError) {
-                                        console.error("Failed to reload page:", reloadError);
-                                    }
+                                    // Fallback: force reload but skip link-start animation
+                                    window.location.href = window.location.pathname + '?skipIntro=true';
                                 }
                             }, 100);
                         }

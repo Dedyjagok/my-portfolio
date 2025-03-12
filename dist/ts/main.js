@@ -219,11 +219,62 @@ document.addEventListener('DOMContentLoaded', () => {
     const portfolio = new Portfolio();
     portfolio.init();
     // Listen for portfolio refresh event
-    document.addEventListener('portfolioReady', () => {
+    document.addEventListener('portfolioReady', (e) => {
+        var _a;
         console.log('Portfolio ready event received. Reinitializing...');
         try {
             const portfolio = new Portfolio();
             portfolio.init();
+            const customEvent = e;
+            if ((_a = customEvent.detail) === null || _a === void 0 ? void 0 : _a.refreshAnimations) {
+                console.log("Refreshing animations with timestamp:", customEvent.detail.timestamp);
+                // Restore section visibility with animation
+                document.querySelectorAll('section').forEach((section, sectionIndex) => {
+                    // Stagger the sections slightly
+                    setTimeout(() => {
+                        // Force reflow by accessing offsetHeight
+                        void section.offsetHeight;
+                        // Make visible with animation
+                        section.style.opacity = '1';
+                        section.classList.add('animate__animated', 'animate__fadeIn');
+                    }, sectionIndex * 40);
+                });
+                // Handle skill items separately with staggered animation
+                const skillContainer = document.getElementById('skillsContainer');
+                if (skillContainer) {
+                    const skills = skillContainer.querySelectorAll('.skill-item');
+                    skills.forEach((skill, index) => {
+                        // Clear any existing animations and prepare for new ones
+                        skill.classList.remove('animate__animated', 'animate__fadeInLeft', 'animate__fadeInRight');
+                        // Prepare starting positions based on odd/even
+                        if (index % 2 === 0) {
+                            skill.style.transform = 'translateX(-100px)';
+                        }
+                        else {
+                            skill.style.transform = 'translateX(100px)';
+                        }
+                        // Stagger the animations
+                        setTimeout(() => {
+                            // Force reflow
+                            skill.offsetHeight;
+                            // Make visible with proper animation
+                            skill.style.opacity = '1';
+                            skill.classList.add('animate__animated');
+                            skill.classList.add(index % 2 === 0 ? 'animate__fadeInLeft' : 'animate__fadeInRight');
+                        }, 100 + (index * 30)); // Reduce from 500ms+100ms to 200ms+30ms
+                    });
+                }
+                // Refresh any other custom animations (like laptop)
+                const laptopCode = document.querySelectorAll('.code-line');
+                laptopCode.forEach((line, index) => {
+                    // Reset and restart typing animation
+                    line.classList.remove('typing');
+                    void line.offsetHeight;
+                    setTimeout(() => {
+                        line.classList.add('typing');
+                    }, index * 20); // Staggered but faster
+                });
+            }
         }
         catch (error) {
             console.error("Error reinitializing portfolio:", error);
