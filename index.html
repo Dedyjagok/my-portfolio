@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 
 <html lang="en">
-     <head>
-         <meta charset="UTF-8">
+    <head>
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Dedy Portfolio</title>
         <link rel="icon" href="img/dedyokmen.png" type="image/png">
@@ -11,128 +11,197 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     </head>
-    <body> <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <div class="container"> <a class="navbar-brand" href="#">PortfolioOK</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <body>
+        <div class="sao-bg-pattern"></div>
+        <!-- Audio element for Link Start (optional - will only play if available) -->
+        <audio id="link-start-audio" class="audio-controls" preload="auto">
+            <source src="audio/link-start.mp3" type="audio/mp3">
+        </audio>
+        
+        <!-- Link Start Animation Container -->
+        <div id="link-start-container" class="link-start-container">
+            <!-- Floating skills background -->
+            <div class="floating-skills-background"></div>
+            
+            <button id="link-start-button" class="link-start-button">LINK START</button>
+            <div id="link-start-animation" class="link-start-animation">
+                <div class="link-start-text"></div>
+                <div class="link-start-tunnel">
+                    <div class="color-line color-blue"></div>
+                    <div class="color-line color-red"></div>
+                    <div class="color-line color-green"></div>
+                    <div class="color-line color-yellow"></div>
+                    <div class="color-line color-purple"></div>
+                </div>
+                <div class="system-check">
+                    <div class="check-item">
+                        <span class="check-label">VISION</span>
+                        <span class="check-status">CHECKING</span>
+                    </div>
+                    <div class="check-item">
+                        <span class="check-label">HEARING</span>
+                        <span class="check-status">CHECKING</span>
+                    </div>
+                    <div class="check-item">
+                        <span class="check-label">TOUCH</span>
+                        <span class="check-status">CHECKING</span>
+                    </div>
+                    <div class="check-item">
+                        <span class="check-label">CODE</span>
+                        <span class="check-status">CHECKING</span>
+                    </div>
+                    <div class="check-item">
+                        <span class="check-label">PORTFOLIO</span>
+                        <span class="check-status">CHECKING</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav id="main-navbar" class="navbar navbar-expand-lg sao-navbar fixed-top">
+            <div class="container">
+                <a class="navbar-brand sao-brand" href="#">
+                    <div class="sao-logo-container">
+                        <img src="img/dedyokmen.png" alt="Dedy" class="nav-profile-img">
+                        <div class="sao-player-info">
+                            <span class="sao-player-name">Dedy Hutahaean</span>
+                            <div class="sao-player-status">
+                                <span class="sao-status-indicator"></span>
+                                <span class="sao-status-text">ONLINE</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <button class="navbar-toggler sao-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <ul class="navbar-nav ms-auto sao-nav">
+                        <li class="nav-item"><a class="nav-link sao-nav-link" href="#home">HOME</a></li>
+                        <li class="nav-item"><a class="nav-link sao-nav-link" href="#about">PROFILE</a></li>
+                        <li class="nav-item"><a class="nav-link sao-nav-link" href="#projects">PROJECTS</a></li>
+                        <li class="nav-item"><a class="nav-link sao-nav-link" href="https://github.com/Dedyjagok" target="_blank">GITHUB</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
 
+    <!-- Hero Section with SAO styling -->
+    <section id="home" class="hero-section">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 text-center animate__animated animate__fadeIn">
+                    <!-- HP Bar similar to SAO -->
+                    <div class="sao-hp-bar-container mb-4">
+                        <div class="sao-hp-label">HP</div>
+                        <div class="sao-hp-bar">
+                            <div class="sao-hp-fill"></div>
+                        </div>
+                        <div class="sao-hp-value">100/100</div>
+                    </div>
+                    
+                    <!-- Add the animated laptop before the profile image -->
+                    <div class="laptop-animation mb-4">
+                        <div class="laptop">
+                            <div class="laptop-screen">
+                                <div class="laptop-code">
+                                    <span class="code-line"></span>
+                                    <span class="code-line"></span>
+                                    <span class="code-line"></span>
+                                </div>
+                            </div>
+                            <div class="laptop-base"></div>
+                        </div>
+                    </div>
+                    <img src="img/dedyokmen.png" alt="Dedy Hutahaean Putra" 
+                        class="profile-img animate__animated animate__pulse">
+                    <h1 class="fw-bold animate__animated animate__fadeInDown text-white sao-glitch-text">
+                        Hi, I'm Dedy Hutahaean Putra <span class="sao-icon">👋</span>
+                    </h1>
+                    <p class="lead animate__animated animate__fadeInUp text-white mb-4">
+                        Full-Stack Rebahan Developer | Student at Politeknik Negeri Medan
+                    </p>
+                    <!-- Social links in hero section -->
+                    <!-- Social links in hero section - remove hover effects -->
+                    <div class="social-links animate__animated animate__fadeInUp">
+                        <a href="https://github.com/Dedyjagok" class="sao-btn-simple mx-2">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="mailto:dedyhutahaean2005@gmail.com" class="sao-btn-simple mx-2">
+                            <i class="fas fa-envelope"></i> Contact Me
+                        </a>
+                    </div>
+                    <div class="scroll-down mt-5 animate__animated animate__bounce animate__infinite">
+                        <a href="#about" class="text-white">
+                            <i class="fas fa-chevron-down fa-2x sao-scroll-icon"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- Hero Section -->
-<section id="home" class="hero-section">
-    <div class="container h-100">
-        <div class="row h-100 align-items-center">
-            <div class="col-12 text-center animate__animated animate__fadeIn">
-                <!-- Add the animated laptop before the profile image -->
-                <div class="laptop-animation mb-4">
-                    <div class="laptop">
-                        <div class="laptop-screen">
-                            <div class="laptop-code">
-                                <span class="code-line"></span>
-                                <span class="code-line"></span>
-                                <span class="code-line"></span>
+            <!-- About Section -->
+            <section id="about" class="py-5">
+                <div class="content-wrapper">
+                    <div class="container animate__animated animate__fadeIn">
+                        <h2 class="text-center mb-4 animate__animated animate__fadeInDown">About Me</h2>
+                        <div class="row">
+                            <!-- About content -->
+                            <div class="col-12 text-center mb-5">
+                                <p class="lead animate__animated animate__fadeInUp">
+                                    I am a student at Politeknik Negeri Medan pursuing a Diploma in Management Information (2023-2026). 
+                                    I specialize in full-stack development with a focus on web technologies.
+                                </p>
+                            </div>
+                            <!-- Skills split into two columns -->
+                            <div class="col-12">
+                                <h4 class="text-center mb-4 animate__animated animate__fadeInRight">
+                                    <i class="fas fa-code me-2"></i>Skills
+                                </h4>
+                                <div id="skillsContainer" class="row justify-content-center">
+                                    <!-- Skills will be loaded dynamically in a 2-column grid -->
+                                </div>
+                            </div>
+                            <!-- Education and Contact -->
+                            <div class="row justify-content-center mt-5">
+                                <div class="col-md-8 text-center animate__animated animate__fadeInUp">
+                                    <h4 class="mb-3">
+                                        <i class="fas fa-graduation-cap me-2"></i>Education
+                                    </h4>
+                                    <div class="education-item mb-4">
+                                        <h5>Politeknik Negeri Medan</h5>
+                                        <p class="text-white">Diploma of Management Information | 2023-2026</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 text-center mt-4 animate__animated animate__fadeInUp">
+                                    <h4 class="mb-3">
+                                        <i class="fas fa-envelope me-2"></i>Contact
+                                    </h4>
+                                    <p>
+                                        <a href="mailto:dedyhutahaean2005@gmail.com" class="text-decoration-none text-white">
+                                            <i class="fas fa-envelope me-2"></i>dedyhutahaean2005@gmail.com
+                                        </a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <div class="laptop-base"></div>
                     </div>
                 </div>
-                <img src="img/dedyokmen.png" alt="Dedy Hutahaean Putra" 
-                     class="rounded-circle mb-4 profile-img animate__animated animate__pulse"
-                     style="width: 150px; height: 150px; border: 3px solid white;">
-                <h1 class="fw-bold animate__animated animate__fadeInDown text-white">
-                    Hi, I'm Dedy Hutahaean Putra 👋
-                </h1>
-                <p class="lead animate__animated animate__fadeInUp text-white mb-4">
-                    Full-Stack Rebahan Developer | Student at Politeknik Negeri Medan
-                </p>
-                <!-- Social links in hero section -->
-                <div class="social-links animate__animated animate__fadeInUp">
-                    <a href="https://github.com/Dedyjagok" class="btn btn-outline-light mx-2 hero-btn">
-                        <i class="fab fa-github"></i> GitHub
-                    </a>
-                    <a href="mailto:dedyhutahaean2005@gmail.com" class="btn btn-outline-light mx-2 hero-btn">
-                        <i class="fas fa-envelope"></i> Contact Me
-                    </a>
-                </div>
-                <div class="scroll-down mt-5 animate__animated animate__bounce animate__infinite">
-                    <a href="#about" class="text-white">
-                        <i class="fas fa-chevron-down fa-2x"></i>
-                    </a>
+            </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4 text-white">My Projects</h2>
+                <div class="row" id="projectsContainer">
+                    <!-- Projects will be loaded dynamically -->
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
 
-<!-- About Section -->
-<section id="about" class="py-5">
-    <div class="content-wrapper">
-        <div class="container animate__animated animate__fadeIn">
-            <h2 class="text-center mb-4 animate__animated animate__fadeInDown">About Me</h2>
-            <div class="row">
-                <!-- About content -->
-                <div class="col-12 text-center mb-5">
-                    <p class="lead animate__animated animate__fadeInUp">
-                        I am a student at Politeknik Negeri Medan pursuing a Diploma in Management Information (2023-2026). 
-                        I specialize in full-stack development with a focus on web technologies.
-                    </p>
-                </div>
-                <!-- Skills split into two columns -->
-                <div class="col-12">
-                    <h4 class="text-center mb-4 animate__animated animate__fadeInRight">
-                        <i class="fas fa-code me-2"></i>Skills
-                    </h4>
-                    <div id="skillsContainer" class="row justify-content-center">
-                        <!-- Skills will be loaded dynamically in a 2-column grid -->
-                    </div>
-                </div>
-                <!-- Education and Contact -->
-                <div class="row justify-content-center mt-5">
-                    <div class="col-md-8 text-center animate__animated animate__fadeInUp">
-                        <h4 class="mb-3">
-                            <i class="fas fa-graduation-cap me-2"></i>Education
-                        </h4>
-                        <div class="education-item mb-4">
-                            <h5>Politeknik Negeri Medan</h5>
-                            <p class="text-muted">Diploma of Management Information | 2023-2026</p>
-                        </div>
-                    </div>
-                    <div class="col-md-8 text-center mt-4 animate__animated animate__fadeInUp">
-                        <h4 class="mb-3">
-                            <i class="fas fa-envelope me-2"></i>Contact
-                        </h4>
-                        <p>
-                            <a href="mailto:dedyhutahaean2005@gmail.com" class="text-decoration-none">
-                                <i class="fas fa-envelope me-2"></i>dedyhutahaean2005@gmail.com
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Projects Section -->
-<section id="projects" class="py-5 bg-light">
-    <div class="container">
-        <h2 class="text-center mb-4">Projects</h2>
-        <div class="row" id="projectsContainer">
-            <!-- Projects will be loaded dynamically -->
-        </div>
-    </div>
-</section>
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script type="module" src="dist/ts/main.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="module" src="dist/ts/link-start.js"></script>
+        <script type="module" src="dist/ts/main.js"></script>
+    </body>
+</html>
