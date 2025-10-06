@@ -80,9 +80,6 @@ portfolio/
 └── index.html       # Main HTML file
 ```
 
-
-
-
 ## 🎯 Skills Showcase
 
 - **Programming Languages:**
@@ -103,23 +100,46 @@ portfolio/
   - Git
   - Adobe Creative Suite (Premiere Pro, Photoshop, Illustrator, After Effects)
 
+<div align="center">
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnQwdndheGx0ZnM0NTdmZ2I5eHEydm85M3N4OGt1bzY1Y3F0OTV2MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qgQUggAC3Pfv687qPC/giphy.gif" width="450" alt="Coding Skills">
+</div>
+
+## 🏆 Certifications & Achievements
+
+### **Machine Learning & Data Science**
+- 🐍 [**Scientific Computing with Python**](https://www.freecodecamp.org/certification/dedyhutahaeanputra/scientific-computing-with-python-v7) - *FreeCodeCamp*
+- 🤖 [**Machine Learning with Python**](https://www.linkedin.com/in/dedy-hutahaean-putra-367767288/) - *LinkedIn Learning*
+- 📊 [**Data Analysis with Python**](https://www.freecodecamp.org/certification/dedyhutahaeanputra/data-analysis-with-python-v7) - *FreeCodeCamp*
+
+### **Web Development**
+- 📱 [**Responsive Web Design**](https://www.freecodecamp.org/certification/dedyhutahaeanputra/responsive-web-design) - *FreeCodeCamp*
+
+### **Tools & Analytics**
+- 🐙 [**GitHub Foundations**](https://www.credly.com/badges/cce9fbbd-76b3-4da8-b222-c0b808395361/linked_in_profile) - *GitHub*
+- 📈 [**Google Analytics Certification**](https://skillshop.credential.net/ef231c49-6450-4cc0-9059-e9ebb4d39ad3#acc.nwpOIN98) - *Google*
+
+<div align="center">
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExampuMnFoaDV3bDh5OTRscnJ1ajMweHAzbDZlNXR1Zzlwem5taTBmaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/krkrLLZBuJrgk/giphy.gif" width="300" alt="Achievement Unlocked">
+</div>
+
 ## 🔧 Setup and Installation
 
-## 1. Clone the repository:
+### 1. Clone the repository:
 ```bash
 git clone https://github.com/Dedyjagok/portfolio.git
+```
 
-## 2. Install dependencies:
+### 2. Install dependencies:
 ```sh
 npm install
 ```
 
-## 3. Run the development server:
+### 3. Run the development server:
 ```sh
 npm run serve
 ```
 
-## 4. Build the project:
+### 4. Build the project:
 ```sh
 npm run build
 ```
@@ -127,6 +147,7 @@ npm run build
 ## 📩 Contact
 - **Email**: [dedyhutahaean2005@gmail.com](mailto:dedyhutahaean2005@gmail.com)
 - **GitHub**: [@Dedyjagok](https://github.com/Dedyjagok)
+- **LinkedIn**: [Dedy Hutahaean Putra](https://www.linkedin.com/in/dedy-hutahaean-putra-367767288/)
 
 ## 🎓 Education
 - **Politeknik Negeri Medan**  
@@ -137,16 +158,7 @@ This project is open source and available under the MIT License.
 
 ---
 
-<center>Created with ❤️ by Dedy Hutahaean Putra</center>
-
-## This README.md includes:
-1. Project overview
-2. Technologies used
-3. Features
-4. Project structure
-5. Installation instructions
-6. Contact information
-7. Education details
-8. License information
-
-
+<div align="center">
+  <p>Created with ❤️ by Dedy Hutahaean Putra</p>
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExampuMnFoaDV3bDh5OTRscnJ1ajMweHAzbDZlNXR1Zzlwem5taTBmaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/krkrLLZBuJrgk/giphy.gif" width="300" alt="Kirito SAO">
+</div>
