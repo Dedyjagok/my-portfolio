@@ -1,1 +1,1 @@
-echo '{"verification":"dh=a4095c37a3604127000969a38bed027ee529a278"}' > .well-known/discord
+{"verification":"dh=a4095c37a3604127000969a38bed027ee529a278"}
