@@ -5,10 +5,12 @@
       { "src": "dist/**/*", "use": "@vercel/static" },
       { "src": "styles/**/*", "use": "@vercel/static" },
       { "src": "img/**/*", "use": "@vercel/static" },
-      { "src": "video/**/*", "use": "@vercel/static" }
+      { "src": "video/**/*", "use": "@vercel/static" },
+      { "src": ".well-known/**/*", "use": "@vercel/static" }
     ],
     "routes": [
+      { "src": "/.well-known/(.*)", "dest": "/.well-known/$1" },
       { "handle": "filesystem" },
       { "src": "/.*", "dest": "/index.html" }
     ]
-  }
+}
