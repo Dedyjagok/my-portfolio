@@ -225,6 +225,10 @@ export class LinkStartAnimation {
                     console.log(`Found ${checkItems.length} check items`);
                     
                     checkItems.forEach((item, index) => {
+                        // Ensure items are visible immediately
+                        (item as HTMLElement).style.opacity = '1';
+                        (item as HTMLElement).style.transform = 'translateX(0)';
+                        
                         setTimeout(() => {
                             console.log(`Processing check item ${index + 1}`);
                             // Add scanning animation
@@ -243,7 +247,7 @@ export class LinkStartAnimation {
                             // After progress completes, show OK status
                             setTimeout(() => {
                                 item.classList.remove('scanning');
-                                item.classList.add('check-complete', 'animate__animated', 'animate__fadeInRight');
+                                item.classList.add('check-complete');
                                 
                                 const statusElement = item.querySelector('.check-status');
                                 if (statusElement) {

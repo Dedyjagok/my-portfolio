@@ -269,6 +269,31 @@
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.5);
     overflow: hidden;
+    opacity: 1; /* Changed from 0 to 1 */
+    transform: translateX(0); /* Changed from translateX(-100%) to translateX(0) */
+    /* Removed animation property */
+}
+
+/* Remove the nth-child animation delays */
+.check-item:nth-child(1),
+.check-item:nth-child(2),
+.check-item:nth-child(3),
+.check-item:nth-child(4),
+.check-item:nth-child(5) {
+    /* No animation delays */
+}
+
+/* Remove slideInCheck animation */
+@keyframes slideInCheck {
+    /* Keep for backward compatibility but won't be used */
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .check-label {
