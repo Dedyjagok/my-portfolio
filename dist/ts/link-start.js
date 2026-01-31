@@ -317,19 +317,24 @@ export class LinkStartAnimation {
                                         }
                                     }
                                     // Dispatch a custom event that will be caught by main.ts
+                                    // Dispatch a custom event that will be caught by main.ts
                                     const event = new CustomEvent('portfolioReady', {
                                         detail: {
                                             refreshAnimations: true,
-                                            timestamp: new Date().getTime() // Add timestamp to ensure event is treated as new
+                                            timestamp: new Date().getTime()
                                         }
                                     });
                                     document.dispatchEvent(event);
                                     console.log("portfolioReady event dispatched");
+                                    // Re-initialize video hover after animation completes
+                                    setTimeout(() => {
+                                        // Dispatch another event to trigger video initialization
+                                        const videoEvent = new CustomEvent('initFaceRecognitionVideo');
+                                        document.dispatchEvent(videoEvent);
+                                    }, 500);
                                 }
                                 catch (error) {
-                                    console.error("Error dispatching portfolioReady event:", error);
-                                    // Fallback: force reload but skip link-start animation
-                                    window.location.href = window.location.pathname + '?skipIntro=true';
+                                    console.error("Error during portfolio refresh:", error);
                                 }
                             }, 100);
                         }

@@ -91,7 +91,62 @@ class Portfolio {
         this.setupContactForm();
         this.initializeAnimations();
         this.initNavbar(); 
+        this.initFaceRecognitionVideo();
         
+        // Listen for video initialization event from link-start
+        document.addEventListener('initFaceRecognitionVideo', () => {
+            console.log('Re-initializing face recognition video from event');
+            this.initFaceRecognitionVideo();
+        });
+    }
+
+    
+
+    private initFaceRecognitionVideo(): void {
+        console.log("Initializing face recognition video hover effect");
+        
+        const creativitySection = document.getElementById('creativity');
+        if (!creativitySection) {
+            console.error("Creativity section not found");
+            return;
+        }
+        
+        const creativityCard = creativitySection.querySelector('.sao-card');
+        if (!creativityCard) {
+            console.error("SAO card not found in creativity section");
+            return;
+        }
+        
+        const video = creativityCard.querySelector('.project-video') as HTMLVideoElement;
+        if (!video) {
+            console.error("Video element not found in creativity card");
+            return;
+        }
+        
+        console.log("Video element found:", video);
+        console.log("Video source:", video.querySelector('source')?.src);
+        
+        // Remove existing event listeners to avoid duplicates
+        const newCard = creativityCard.cloneNode(true) as HTMLElement;
+        creativityCard.parentNode?.replaceChild(newCard, creativityCard);
+        
+        const newVideo = newCard.querySelector('.project-video') as HTMLVideoElement;
+        
+        // Add hover event listeners
+        newCard.addEventListener('mouseenter', () => {
+            console.log("Mouse entered creativity card - playing video");
+            newVideo.play().catch(err => {
+                console.error("Error playing video:", err);
+            });
+        });
+        
+        newCard.addEventListener('mouseleave', () => {
+            console.log("Mouse left creativity card - pausing video");
+            newVideo.pause();
+            newVideo.currentTime = 0;
+        });
+        
+        console.log("Face recognition video hover handlers attached successfully");
     }
 
     private loadProjects(): void {

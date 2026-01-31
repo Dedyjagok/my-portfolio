@@ -546,6 +546,8 @@ section h2::after {
     overflow: hidden;
     z-index: 1;
     transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .sao-btn-simple {
@@ -583,10 +585,17 @@ section h2::after {
     color: #fff;
     box-shadow: 0 0 15px rgba(0, 162, 255, 0.5);
     transform: translateY(-3px);
+    text-decoration: none;
 }
 
 .sao-btn:hover::before {
     left: 100%;
+}
+
+/* Remove the problematic ::after ripple effect for links */
+.sao-btn[target="_blank"]::after,
+.sao-btn[data-bs-toggle]::after {
+    display: none;
 }
 
 /* Skills styling for SAO */
