@@ -113,16 +113,32 @@ class Portfolio {
                 creativityCard.removeEventListener('mouseleave', el._videoMouseLeave);
             }
             // Store named handlers on the element so they can be removed on re-init
+            let playPromise;
             el._videoMouseEnter = () => {
-                console.log("Mouse entered - attempting to play video");
-                video.play()
-                    .then(() => console.log("Video playing successfully"))
-                    .catch(err => console.error("Error playing video:", err));
+                video.muted = true; // enforce muted for production autoplay policy
+                playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(err => {
+                        console.error("Error playing video:", err);
+                        playPromise = undefined;
+                    });
+                }
             };
             el._videoMouseLeave = () => {
-                console.log("Mouse left - pausing video");
-                video.pause();
-                video.currentTime = 0;
+                if (playPromise !== undefined) {
+                    // Wait for play to resolve before pausing — avoids DOMException in production
+                    playPromise.then(() => {
+                        video.pause();
+                        video.currentTime = 0;
+                    }).catch(() => {
+                        // play was already rejected, nothing to pause
+                    });
+                    playPromise = undefined;
+                }
+                else {
+                    video.pause();
+                    video.currentTime = 0;
+                }
             };
             creativityCard.addEventListener('mouseenter', el._videoMouseEnter);
             creativityCard.addEventListener('mouseleave', el._videoMouseLeave);
