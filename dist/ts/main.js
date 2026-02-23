@@ -102,37 +102,30 @@ class Portfolio {
             }
             console.log("Video element found:", video);
             console.log("Video source:", (_a = video.querySelector('source')) === null || _a === void 0 ? void 0 : _a.getAttribute('src'));
-            // Check if video file exists by trying to load it
-            video.addEventListener('error', (e) => {
-                var _a, _b;
-                console.error("Video load error:", e);
-                console.error("Video error code:", (_a = video.error) === null || _a === void 0 ? void 0 : _a.code);
-                console.error("Video error message:", (_b = video.error) === null || _b === void 0 ? void 0 : _b.message);
-            });
             // Load the video
             video.load();
-            // Remove any existing event listeners by setting a flag
-            if (creativityCard._videoInitialized) {
-                console.log("Video already initialized, skipping");
-                return;
+            // Remove previous handlers if any (to avoid duplicate listeners on re-init)
+            const el = creativityCard;
+            if (el._videoMouseEnter) {
+                creativityCard.removeEventListener('mouseenter', el._videoMouseEnter);
             }
-            creativityCard._videoInitialized = true;
-            // Add hover event listeners directly
-            creativityCard.addEventListener('mouseenter', () => {
+            if (el._videoMouseLeave) {
+                creativityCard.removeEventListener('mouseleave', el._videoMouseLeave);
+            }
+            // Store named handlers on the element so they can be removed on re-init
+            el._videoMouseEnter = () => {
                 console.log("Mouse entered - attempting to play video");
                 video.play()
-                    .then(() => {
-                    console.log("Video playing successfully");
-                })
-                    .catch(err => {
-                    console.error("Error playing video:", err);
-                });
-            });
-            creativityCard.addEventListener('mouseleave', () => {
+                    .then(() => console.log("Video playing successfully"))
+                    .catch(err => console.error("Error playing video:", err));
+            };
+            el._videoMouseLeave = () => {
                 console.log("Mouse left - pausing video");
                 video.pause();
                 video.currentTime = 0;
-            });
+            };
+            creativityCard.addEventListener('mouseenter', el._videoMouseEnter);
+            creativityCard.addEventListener('mouseleave', el._videoMouseLeave);
             console.log("Face recognition video hover handlers attached successfully");
         }, 100);
     }

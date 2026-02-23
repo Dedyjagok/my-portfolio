@@ -207,6 +207,15 @@ a[href^="mailto"]:hover::after {
     opacity: 0;
 }
 
+/* Creativity section uses .sao-card instead of .project-card */
+.sao-card:hover .project-video {
+    opacity: 1;
+}
+
+.sao-card:hover .project-media img {
+    opacity: 0;
+}
+
 .project-card .card-body {
     position: relative;
     z-index: 2;
